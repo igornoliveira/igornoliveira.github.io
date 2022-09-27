@@ -3,7 +3,13 @@
   xmlns:xhtml="http://www.w3.org/1999/xhtml">
   <url>
     <loc>https://igornoliveira.github.io/</loc>
-    <lastmod>2020-10-09T00:00:00+00:00</lastmod>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://igornoliveira.github.io/p/adicionando-chave-ssh-ao-ssh-agent/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
+  </url><url>
+    <loc>https://igornoliveira.github.io/post/</loc>
+    <lastmod>2022-09-27T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://igornoliveira.github.io/page/</loc>
     <lastmod>2020-10-09T00:00:00+00:00</lastmod>
@@ -15,9 +21,6 @@
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://igornoliveira.github.io/p/test-chinese/</loc>
-    <lastmod>2020-09-09T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://igornoliveira.github.io/post/</loc>
     <lastmod>2020-09-09T00:00:00+00:00</lastmod>
   </url><url>
     <loc>https://igornoliveira.github.io/categories/test/</loc>
@@ -88,9 +91,6 @@
   </url><url>
     <loc>https://igornoliveira.github.io/p/emoji-support/</loc>
     <lastmod>2019-03-05T00:00:00+00:00</lastmod>
-  </url><url>
-    <loc>https://igornoliveira.github.io/adicionar-sua-chave-ssh-ao-ssh-agent/</loc>
-    <priority>0</priority>
   </url><url>
     <loc>https://igornoliveira.github.io/puliblicando-em-mais-de-um-repositorio-git/</loc>
     <priority>0</priority>
