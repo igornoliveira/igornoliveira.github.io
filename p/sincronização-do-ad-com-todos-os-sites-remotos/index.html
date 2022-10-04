@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en-us" dir="ltr">
     <head><meta charset='utf-8'>
-<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Um guia de como adicionar usuario ao grupo pelo cmd'><title>Adicionar usuario ao grupo pelo CMD</title>
+<meta name='viewport' content='width=device-width, initial-scale=1'><meta name='description' content='Um guia de como sincronizar o AD com todos os Sites Remotos'><title>Sincronização do AD com todos os Sites Remotos</title>
 
-<link rel='canonical' href='https://igornoliveira.github.io/p/adicionar-usuario-ao-grupo-pelo-cmd/'>
+<link rel='canonical' href='https://igornoliveira.github.io/p/sincroniza%C3%A7%C3%A3o-do-ad-com-todos-os-sites-remotos/'>
 
-<link rel="stylesheet" href="/scss/style.min.5a8e892f6fa14515e9065eee1f5d2e05302606ec7f11750b2fb95198f9cdcbfd.css"><meta property='og:title' content='Adicionar usuario ao grupo pelo CMD'>
-<meta property='og:description' content='Um guia de como adicionar usuario ao grupo pelo cmd'>
-<meta property='og:url' content='https://igornoliveira.github.io/p/adicionar-usuario-ao-grupo-pelo-cmd/'>
+<link rel="stylesheet" href="/scss/style.min.5a8e892f6fa14515e9065eee1f5d2e05302606ec7f11750b2fb95198f9cdcbfd.css"><meta property='og:title' content='Sincronização do AD com todos os Sites Remotos'>
+<meta property='og:description' content='Um guia de como sincronizar o AD com todos os Sites Remotos'>
+<meta property='og:url' content='https://igornoliveira.github.io/p/sincroniza%C3%A7%C3%A3o-do-ad-com-todos-os-sites-remotos/'>
 <meta property='og:site_name' content='Igor Nascimento'>
 <meta property='og:type' content='article'><meta property='article:section' content='Post' /><meta property='article:tag' content='cmd' /><meta property='article:tag' content='Windows' /><meta property='article:published_time' content='2022-10-04T00:00:00&#43;00:00'/><meta property='article:modified_time' content='2022-10-04T00:00:00&#43;00:00'/>
-<meta name="twitter:title" content="Adicionar usuario ao grupo pelo CMD">
-<meta name="twitter:description" content="Um guia de como adicionar usuario ao grupo pelo cmd">
+<meta name="twitter:title" content="Sincronização do AD com todos os Sites Remotos">
+<meta name="twitter:description" content="Um guia de como sincronizar o AD com todos os Sites Remotos">
 <script async src="https://www.googletagmanager.com/gtag/js?id=G-40LY6M8YNB"></script>
 <script>
 var doNotTrack = false;
@@ -254,12 +254,12 @@ if (!doNotTrack) {
 
     <div class="article-title-wrapper">
         <h2 class="article-title">
-            <a href="/p/adicionar-usuario-ao-grupo-pelo-cmd/">Adicionar usuario ao grupo pelo CMD</a>
+            <a href="/p/sincroniza%C3%A7%C3%A3o-do-ad-com-todos-os-sites-remotos/">Sincronização do AD com todos os Sites Remotos</a>
         </h2>
     
         
         <h3 class="article-subtitle">
-            Um guia de como adicionar usuario ao grupo pelo cmd
+            Um guia de como sincronizar o AD com todos os Sites Remotos
         </h3>
         
     </div>
@@ -292,7 +292,7 @@ if (!doNotTrack) {
 
 
                 <time class="article-time--reading">
-                    1 minuto de leitura
+                    2 minutos de leitura
                 </time>
             </div>
         
@@ -306,40 +306,83 @@ if (!doNotTrack) {
     <section class="article-content">
     
     
-    <ul>
-<li>Adiciona usuário no grupo</li>
-</ul>
+    <h2 id="forçar-sincronização-do-microsoft-ad-com-todos-os-sites-remotos">Forçar Sincronização do Microsoft AD Com Todos os Sites Remotos</h2>
+<p>Este é um  comando interessante caso haja algum problema com a replicação automática dos sites remotos do AD.
+Ele força a replicação do AD primário para todos os sites.
+O comando deve ser feito à partir do AD Primário. Na tela de Prompt do MS-Dos, entre com o comando abaixo:</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net localgroup “Nome_do_grupo” Nome_do_usuario /add
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repadmin /syncall /e /A /P /d /q
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>Deleta o usuário do grupo</li>
+</div><h4 id="aqui-cada-um-dos-parâmetros-explicados">Aqui cada um dos parâmetros explicados:</h4>
+<ul>
+<li>
+<p>/syncall: Sincroniza o domain controller principal com todos os parceiros de replicação;</p>
+</li>
+<li>
+<p>/e: Enterprise… indica que a replicação será estendida a todos os sites remotos;</p>
+</li>
+<li>
+<p>/A:  All; Sincroniza todas as partições do home server;</p>
+</li>
 </ul>
+<ul>
+<li>
+<p>/P: Indica que as mudanças serão replicadas a partir do servidor primário;</p>
+</li>
+<li>
+<p>/d: Identifica os servidores por seus nomes distintos em eventuais mensagens que possam aparecer;</p>
+</li>
+<li>
+<p>/q: Quiet mode. Não mostra as mensagens de status. Caso você esteja fazendo isso manualmente por algum problema, é melhor não usar este parâmetro para identificar algum erro.</p>
+</li>
+</ul>
+<h2 id="verificando-o-status-da-replicação-do-active-directory-ad">Verificando o status da replicação do Active Directory (AD)</h2>
+<h4 id="repadmin">Repadmin</h4>
+<p>Digite o comando <strong>repadmin /showreps</strong> e aperte Enter.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net localgroup “Nome_do_grupo” Nome_do_usuario /delete
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">repadmin /showreps &gt; nomedoarquivo.txt
 </span></span></code></pre></td></tr></table>
 </div>
-</div><ul>
-<li>Lista os usuário do grupo</li>
-</ul>
+</div><p>Existem outros comandos do repadmin, são eles:</p>
+<ol>
+<li>
+<p>Mostra a estatísca das replicações.</p>
 <div class="highlight"><div class="chroma">
 <table class="lntable"><tr><td class="lntd">
 <pre tabindex="0" class="chroma"><code><span class="lnt">1
 </span></code></pre></td>
 <td class="lntd">
-<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">net localgroup Nome_do_grupo
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Repadmin /replsummary
 </span></span></code></pre></td></tr></table>
 </div>
+</div></li>
+<li>
+<p>Mostra informações sobre replicações entre sites.</p>
+<div class="highlight"><div class="chroma">
+<table class="lntable"><tr><td class="lntd">
+<pre tabindex="0" class="chroma"><code><span class="lnt">1
+</span></code></pre></td>
+<td class="lntd">
+<pre tabindex="0" class="chroma"><code class="language-fallback" data-lang="fallback"><span class="line"><span class="cl">Repadmin /showism
+</span></span></code></pre></td></tr></table>
 </div>
+</div></li>
+</ol>
+<h4 id="dcdiag">Dcdiag</h4>
+<p>Digite dcdiag <strong>/test:replications</strong> e aperte Enter.</p>
+<p>dcdiag /test:replications &gt; nomedoarquivo.txt</p>
+<p>Outro commando importante do dcdiag é dcdiag /test:dns que apresenta um relatório sobre o estado do DN.</p>
+<p>Lembre-se: Para gerar um arquivo .txt na raíz do C: digite cd /</p>
+
 </section>
 
 
@@ -383,12 +426,12 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/publicar-em-mais-de-um-repositorio-git/">
+    <a href="/p/adicionar-usuario-ao-grupo-pelo-cmd/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Publicar em mais de um repositorio git</h2>
+            <h2 class="article-title">Adicionar usuario ao grupo pelo CMD</h2>
         </div>
     </a>
 </article>
@@ -396,12 +439,12 @@ if (!doNotTrack) {
             
                 
 <article class="">
-    <a href="/p/sincroniza%C3%A7%C3%A3o-do-ad-com-todos-os-sites-remotos/">
+    <a href="/p/publicar-em-mais-de-um-repositorio-git/">
         
         
 
         <div class="article-details">
-            <h2 class="article-title">Sincronização do AD com todos os Sites Remotos</h2>
+            <h2 class="article-title">Publicar em mais de um repositorio git</h2>
         </div>
     </a>
 </article>
@@ -524,7 +567,56 @@ if (!doNotTrack) {
             >
 
             </main>
-    
+    <aside class="sidebar right-sidebar sticky">
+        
+            
+                
+    <section class="widget archives">
+        <div class="widget-icon">
+            <svg xmlns="http://www.w3.org/2000/svg" class="icon icon-tabler icon-tabler-hash" width="24" height="24" viewBox="0 0 24 24" stroke-width="2" stroke="currentColor" fill="none" stroke-linecap="round" stroke-linejoin="round">
+  <path stroke="none" d="M0 0h24v24H0z"/>
+  <line x1="5" y1="9" x2="19" y2="9" />
+  <line x1="5" y1="15" x2="19" y2="15" />
+  <line x1="11" y1="4" x2="7" y2="20" />
+  <line x1="17" y1="4" x2="13" y2="20" />
+</svg>
+
+
+
+        </div>
+        <h2 class="widget-title section-title">Índice</h2>
+        
+        <div class="widget--toc">
+            <nav id="TableOfContents">
+  <ol>
+    <li><a href="#forçar-sincronização-do-microsoft-ad-com-todos-os-sites-remotos">Forçar Sincronização do Microsoft AD Com Todos os Sites Remotos</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#aqui-cada-um-dos-parâmetros-explicados">Aqui cada um dos parâmetros explicados:</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+    <li><a href="#verificando-o-status-da-replicação-do-active-directory-ad">Verificando o status da replicação do Active Directory (AD)</a>
+      <ol>
+        <li>
+          <ol>
+            <li><a href="#repadmin">Repadmin</a></li>
+            <li><a href="#dcdiag">Dcdiag</a></li>
+          </ol>
+        </li>
+      </ol>
+    </li>
+  </ol>
+</nav>
+        </div>
+    </section>
+
+            
+        
+    </aside>
+
 
         </div>
         <script 
